@@ -1,0 +1,31 @@
+{
+  "name": "goit-js-hw-10",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel src/*.html",
+    "build": "parcel build src/*.html --public-url /goit-js-hw-10/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Victor1988V/goit-js-hw-10.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Victor1988V/goit-js-hw-10/issues"
+  },
+  "homepage": "https://github.com/Victor1988V/goit-js-hw-10#readme",
+  "devDependencies": {
+    "parcel": "^2.8.0",
+    "parcel-reporter-clean-dist": "^1.0.4",
+    "posthtml-include": "^1.7.4"
+  },
+  "dependencies": {
+    "@vimeo/player": "^2.18.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
+    "notiflix": "^3.2.5",
+    "simplelightbox": "^2.10.4"
+  }
+}
