@@ -10,16 +10,23 @@ export default class NewApiService {
     this.page = 1;
   }
 
-  fetchImages() {
-    // console.log(this);
-    return fetch(
-      `${BASE_URL}&q=${this.searchInput}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`
-    ).then((response) => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    });
+  async fetchImages() {
+    try {
+      const response = await axios(
+        `${BASE_URL}&q=${this.searchInput}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`
+      );
+      console.log(response);
+
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      Notify.failure(err.message);
+      return {
+        hits: [],
+        total: 0,
+        totalHits: 0,
+      };
+    }
   }
 
   get query() {

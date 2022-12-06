@@ -16,26 +16,27 @@ console.log(loadMoreBtn);
 
 const newAPI = new NewApiService();
 
-function onSearch(event) {
+async function onSearch(event) {
   event.preventDefault();
-  newAPI.query = event.target.elements.searchQuery.value;
+  newAPI.query = event.target.elements.searchQuery.value.trim();
+  if (!newAPI.query) {
+    return;
+  }
   console.log(event.target.elements.searchQuery.value);
 
-  newAPI.fetchImages().then((data) => {
-    console.log(data);
-    clearGalleryContainer();
-    if (data.hits.length === 0) {
-      return Notify.failure(
-        "Sorry, there are no images matching your search query. Please try again."
-      );
-    }
+  const data = await newAPI.fetchImages();
+  console.log(data);
+  clearGalleryContainer();
+  if (data.hits.length === 0) {
+    return Notify.failure(
+      "Sorry, there are no images matching your search query. Please try again."
+    );
+  }
 
-    loadMoreBtn.show();
-    Notify.success("Hooray! We found 500 images.");
-    newAPI.resetPage();
-    gallery.insertAdjacentHTML("beforeend", appendMakeMarkup(data.hits));
-    // loadMoreBtn.disable();
-  });
+  loadMoreBtn.show();
+  newAPI.resetPage();
+  gallery.insertAdjacentHTML("beforeend", appendMakeMarkup(data.hits));
+  // loadMoreBtn.disable();
 }
 
 function appendMakeMarkup(data) {
@@ -66,12 +67,18 @@ function appendMakeMarkup(data) {
     .join(" ");
 }
 
-function onMoreImage() {
-  newAPI.fetchImages().then((data) => {
-    gallery.insertAdjacentHTML("beforeend", appendMakeMarkup(data.hits));
-  });
+async function onMoreImage() {
+  try {
+    const data = await newAPI.fetchImages();
+    Notify.success(`Hooray! We found ${data.totalHits} images.`);
+    console.log(data);
 
-  newAPI.incrementPage();
+    gallery.insertAdjacentHTML("beforeend", appendMakeMarkup(data.hits));
+
+    newAPI.incrementPage();
+  } catch (err) {
+    console.log("ERROR");
+  }
 }
 
 function clearGalleryContainer() {
