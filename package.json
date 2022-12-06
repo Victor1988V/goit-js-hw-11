@@ -4,25 +4,27 @@
   "description": "",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-10/"
+    "build": "parcel build src/*.html --public-url /goit-js-hw-11/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Victor1988V/goit-js-hw-10.git"
+    "url": "git+https://github.com/Victor1988V/goit-js-hw-11.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Victor1988V/goit-js-hw-10/issues"
+    "url": "https://github.com/Victor1988V/goit-js-hw-11/issues"
   },
-  "homepage": "https://github.com/Victor1988V/goit-js-hw-10#readme",
+  "homepage": "https://github.com/Victor1988V/goit-js-hw-11#readme",
   "devDependencies": {
+    "buffer": "^5.7.1",
     "parcel": "^2.8.0",
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4"
   },
   "dependencies": {
     "@vimeo/player": "^2.18.0",
+    "axios": "^1.2.0",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "notiflix": "^3.2.5",
