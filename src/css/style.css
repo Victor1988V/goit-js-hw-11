@@ -76,7 +76,7 @@ input {
 
 .photo-card {
   width: calc((100% - 90px) / 4);
-  width: 330px;
+  width: 315px;
   /* height: 210px; */
   /* margin: 15px; */
 }

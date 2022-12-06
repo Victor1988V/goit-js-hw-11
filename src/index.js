@@ -1,8 +1,13 @@
-import axios from "axios";
 import { Notify } from "notiflix";
-import simpleLightbox from "simplelightbox";
 import LoadMoreBtn from "./loadMoreButton";
 import NewApiService from "./fetchMarkup";
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
+const simplMarkup = new SimpleLightbox(".gallery a", {
+  captionPosition: "bottom",
+  captionDelay: 300,
+});
 
 const form = document.querySelector("#search-form");
 const gallery = document.querySelector(".gallery");
@@ -36,6 +41,7 @@ async function onSearch(event) {
   loadMoreBtn.show();
   newAPI.resetPage();
   gallery.insertAdjacentHTML("beforeend", appendMakeMarkup(data.hits));
+  simplMarkup.refresh();
   // loadMoreBtn.disable();
 }
 
@@ -43,7 +49,7 @@ function appendMakeMarkup(data) {
   return data
     .map((elem) => {
       return `<div class="photo-card">
-    <img src="${elem.webformatURL}" alt="${elem.tags}" loading="lazy" />
+    <a href="${elem.webformatURL}" src="${elem.largeImageURL}"><img src="${elem.webformatURL}" alt="${elem.tags}" loading="lazy" /><a/>
     <div class="info">
       <p class="info-item">
         <b>Likes</b>
@@ -74,6 +80,7 @@ async function onMoreImage() {
     console.log(data);
 
     gallery.insertAdjacentHTML("beforeend", appendMakeMarkup(data.hits));
+    simplMarkup.refresh();
 
     newAPI.incrementPage();
   } catch (err) {

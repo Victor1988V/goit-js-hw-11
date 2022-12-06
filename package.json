@@ -28,6 +28,6 @@
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "notiflix": "^3.2.5",
-    "simplelightbox": "^2.10.4"
+    "simplelightbox": "^2.11.0"
   }
 }
